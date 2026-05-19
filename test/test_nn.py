@@ -14,11 +14,19 @@ def test_neuron_output_is_value():
     assert isinstance(out, Value)
 
 
-def test_neuron_output_in_tanh_range():
-    # Output uses tanh, so it must be in (-1, 1)
+def test_neuron_output_relu_nonnegative():
+    # With ReLU activation (default), output must be >= 0
     n = Neuron(3)
     out = n([1.0, 2.0, 3.0])
-    assert -1.0 <= out.data <= 1.0
+    assert out.data >= 0.0
+
+
+def test_neuron_linear_can_be_negative():
+    # With nonlin=False, output is unbounded (can be negative)
+    # We just check it's a Value; can't assert sign without controlling weights
+    n = Neuron(3, nonlin=False)
+    out = n([1.0, 2.0, 3.0])
+    assert isinstance(out, Value)
 
 
 def test_neuron_parameter_count():
