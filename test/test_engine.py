@@ -211,7 +211,39 @@ def test_exp_backward():
     assert a.grad == pytest.approx(math.exp(2.0))
 
 
+def test_relu_forward_positive():
+    a = Value(2.0)
+    b = a.relu()
+    assert b.data == 2.0
 
+
+def test_relu_forward_negative():
+    a = Value(-3.0)
+    b = a.relu()
+    assert b.data == 0.0
+
+
+def test_relu_forward_zero():
+    a = Value(0.0)
+    b = a.relu()
+    assert b.data == 0.0
+
+
+def test_relu_backward_positive():
+    # d/dx relu(x) = 1 when x > 0
+    a = Value(2.0)
+    b = a.relu()
+    b.backward()
+    assert a.grad == 1.0
+
+
+def test_relu_backward_negative():
+    # d/dx relu(x) = 0 when x <= 0
+    a = Value(-2.0)
+    b = a.relu()
+    b.backward()
+    assert a.grad == 0.0
+    
 # ============================================================
 # COMPREHENSIVE TEST AGAINST PYTORCH
 # ============================================================
