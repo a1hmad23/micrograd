@@ -5,7 +5,7 @@ A tiny scalar-valued autograd engine and a small neural net library built on top
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/micrograd.git
+git clone https://github.com/a1hmad23/micrograd.git
 cd micrograd
 pip install -e .
 ```
