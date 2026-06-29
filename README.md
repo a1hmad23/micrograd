@@ -1,6 +1,6 @@
 # micrograd
 
-A tiny scalar-valued autograd engine and a small neural net library built on top of it. Implementation based on Andrej Karpathy's micrograd, rebuilt as a learning exercise.
+A tiny scalar-valued autograd engine and a small neural net library built on top of it.
 
 ## Installation
 
